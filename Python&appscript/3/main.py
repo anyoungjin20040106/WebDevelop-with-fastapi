@@ -1,15 +1,6 @@
-x=1
-isSuccess=False
-while True:
-    y=0
-    while x<=y:
-        print(f"{x}+{y}={x+y}")
-        if x**2+100*y==500:
-            isSuccess=True
-            break
-        y+=1
-    if isSuccess:
-        break
-    else:
-        x+=1
-x,y
+s=1
+i=1
+while i<=500:
+    s*=i
+    i+=1
+print(f'1부터 500까지의 곱 {s}')
