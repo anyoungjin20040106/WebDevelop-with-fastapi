@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+<body>
+    <form action="/signup" method="post">
+        아이디 : <input name="id" required><br>
+        비밀번호 : <input type="password" name="pw" required><br>
+        이름 : <input name="name" required><br>
+        성별 : 
+        <input type="radio" name="sex" checked value="남자">남자
+        <input type="radio" name="sex" value="여자">여자<br>
+        생년월일 : <input type="date" name="date" required><br>
+        전화번호 : <select name="ph1">
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="016">016</option>
+            <option value="017">017</option>
+            <option value="018">018</option>
+            <option value="019">019</option>
+        </select>-<input type="text" name="ph2" minlength="3" maxlength="4" required>-
+        <input type="text" name="ph3" minlength="4" maxlength="4" required><br>
+        mbti<br>
+        <input type="radio" name="m1" checked value="I">I
+        <input type="radio" name="m1" value="E">E<br>
+        <input type="radio" name="m2" checked value="N">N
+        <input type="radio" name="m2" value="S">S<br>
+        <input type="radio" name="m3" checked value="T">T
+        <input type="radio" name="m3" value="F">F<br>
+        <input type="radio" name="m4" checked value="P">P
+        <input type="radio" name="m4" value="J">J<br>
+        <button type="submit">회원가입 하기</button>
+        <button type="button" onclick="window.location.href='/'">로그인화면으로</button>
+    </form>
+</body>
+</html>
