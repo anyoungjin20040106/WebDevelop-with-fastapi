@@ -23,16 +23,6 @@ async def signup(request:Request,name:str=Form(...),id: str = Form(...),pw: str 
     ph="-".join([ph1,ph2,ph3])
     if len(df[(df['아이디']==id)|(df['전화번호']==ph)])==0:
         pw = hashlib.sha256(pw.encode()).hexdigest()
-        print({
-            "method":"insert",
-            "id":id,
-            "pw":pw,
-            "name":name,
-            "sex":sex,
-            "date":date.strftime("%Y-%m-%d"),
-            "ph":ph,
-            "mbti":m1+m2+m3+m4
-        })
         async with httpx.AsyncClient() as client:
             response=await client.post(os.getenv("comedu_system"),data={
             "method":"insert",
