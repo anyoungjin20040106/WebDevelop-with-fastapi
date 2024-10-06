@@ -2,7 +2,7 @@ from fastapi import FastAPI,Form,Request
 import hashlib
 import httpx
 import pandas as pd
-from datetime import datetime
+import datetime
 from fastapi.responses import FileResponse
 from fastapi.templating import Jinja2Templates
 import os
@@ -16,16 +16,14 @@ def index():
 @app.get("/signupform")
 def index():
     return FileResponse("signup.html")
-
 @app.post("/signup")
-async def signup(request:Request,name:str=Form(...),id: str = Form(...),pw: str = Form(...),sex: str = Form(...),date: datetime = Form(...),ph1: str = Form(...),ph2: str = Form(...),ph3: str = Form(...),m1: str = Form(...),m2: str = Form(...),m3: str = Form(...),m4: str = Form(...)):
+async def signup(request:Request,name:str=Form(...),id: str = Form(...),pw: str = Form(...),sex: str = Form(...),date: datetime.date = Form(...),ph1: str = Form(...),ph2: str = Form(...),ph3: str = Form(...),m1: str = Form(...),m2: str = Form(...),m3: str = Form(...),m4: str = Form(...)):
     df=getUserTable()
     ph="-".join([ph1,ph2,ph3])
     if len(df[(df['아이디']==id)|(df['전화번호']==ph)])==0:
         pw = hashlib.sha256(pw.encode()).hexdigest()
         async with httpx.AsyncClient() as client:
             response=await client.post(os.getenv("comedu_system"),data={
-            "method":"insert",
             "id":id,
             "pw":pw,
             "name":name,
