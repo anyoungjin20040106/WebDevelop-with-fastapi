@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사진 공유 홈페이지</title>
+</head>
+<body>
+    <center>
+        
+    <h1>사진 공유 홈페이지</h1>
+    <button onclick="window.location.href='/uploadform'">사진올리기</button>
+    {{board|safe}}
+    </center>
+</body>
+<script>
+    function passwordCheck(formId) {
+        let pw = prompt("비밀번호를 입력해주세요:");
+        if (pw === null || pw.trim() === "") {
+            // 사용자가 입력을 취소하거나 빈 값을 입력했을 때
+            alert("비밀번호가 필요합니다.");
+            return false; // 폼 제출 중단
+        }
+        document.getElementById("pw_" + formId).value = pw;
+        alert("디버깅용");
+        return true;
+    }
+</script>
+</html>

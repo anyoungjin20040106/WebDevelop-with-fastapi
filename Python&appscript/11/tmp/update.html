@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 수정하기</title>
+</head>
+
+<body>
+    <form action="/update" method="post" onsubmit="return isUpload()" enctype="multipart/form-data">
+        <input name="id" type="hidden" value="{{id}}">
+        제목 : <input name="title" value="{{title}}" required><br>
+        닉네임 : <input name="name" value="{{name}}" required><br>
+        올릴 이미지 : <input name="img" id="img" type="file" required><br>
+        비밀번호 : <input name="pw" id="pw" type="password" required><br>
+        비밀번호 확인 : <input id="repw" type="password" required><br>
+        <button type="submit">이미지 바꾸기</button>
+        <button type="button" onclick="window.location.href='/'">취소</button>
+    </form>
+</body>
+<script>
+function isUpload() {
+    const pw = document.getElementById('pw').value;
+    const repw = document.getElementById('repw').value;
+    const img = document.getElementById('img').value.split('.').pop();
+
+    // 비밀번호 일치 여부 확인
+    if (pw != repw) {
+        alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+        return false;
+    }
+
+    // 이미지 확장자 확인
+    const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+    if (!allowedExtensions.includes(img)) {//==img not in allowedExtensions
+        alert("이미지 파일만 업로드 가능합니다 (.jpg, .jpeg, .png, .gif, .webp).");
+        return false;
+    }
+
+    alert("업로드를 실행하겠습니다");
+    // 모든 조건이 만족되면 true 반환
+    return true;
+}
+
+</script>
+
+</html>

@@ -2,7 +2,6 @@ from fastapi import FastAPI,Form,Request
 import hashlib
 import httpx
 import pandas as pd
-import datetime
 from fastapi.responses import FileResponse
 from fastapi.templating import Jinja2Templates
 import os
@@ -17,7 +16,7 @@ def index():
 def index():
     return FileResponse("signup.html")
 @app.post("/signup")
-async def signup(request:Request,name:str=Form(...),id: str = Form(...),pw: str = Form(...),sex: str = Form(...),date: datetime.date = Form(...),ph1: str = Form(...),ph2: str = Form(...),ph3: str = Form(...),m1: str = Form(...),m2: str = Form(...),m3: str = Form(...),m4: str = Form(...)):
+async def signup(request:Request,name:str=Form(...),id: str = Form(...),pw: str = Form(...),sex: str = Form(...),date: str = Form(...),ph1: str = Form(...),ph2: str = Form(...),ph3: str = Form(...),m1: str = Form(...),m2: str = Form(...),m3: str = Form(...),m4: str = Form(...)):
     df=getUserTable()
     ph="-".join([ph1,ph2,ph3])
     if len(df[(df['아이디']==id)|(df['전화번호']==ph)])==0:
@@ -28,7 +27,7 @@ async def signup(request:Request,name:str=Form(...),id: str = Form(...),pw: str 
             "pw":pw,
             "name":name,
             "sex":sex,
-            "date": date.strftime("%Y-%m-%d"),
+            "date": date,
             "ph":ph,
             "mbti":m1+m2+m3+m4
         })
